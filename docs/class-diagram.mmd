@@ -1,0 +1,72 @@
+classDiagram
+  Category "1" --> "0..*" Product : clasifica
+  Product "1" --> "0..*" ProductVehicle : compatibilidad
+  Vehicle "1" --> "0..*" ProductVehicle : vehiculo
+  Customer "0..1" --> "0..*" Sale : compra
+  User "1" --> "0..*" Sale : registra
+  Sale "1" --> "1..*" SaleItem : contiene
+  Product "1" --> "0..*" SaleItem : vendido como
+  Sale "1" --> "0..*" Payment : intenta cobrar
+  Payment "1" --> "0..*" PaymentEvent : notificacion
+
+  class Category {
+    +id
+    +name
+  }
+  class Product {
+    +id
+    +sku
+    +name
+    +brand
+    +price
+    +stock
+    +minimum_stock
+  }
+  class Vehicle {
+    +id
+    +make
+    +model
+    +year_from
+    +year_to
+  }
+  class Customer {
+    +id
+    +full_name
+    +email
+    +phone
+  }
+  class User {
+    +id
+    +email
+    +password_hash
+    +role
+  }
+  class Sale {
+    +id
+    +subtotal
+    +tax
+    +total
+    +payment_method
+    +status
+    +inventory_released
+  }
+  class SaleItem {
+    +id
+    +quantity
+    +unit_price
+    +line_total
+  }
+  class Payment {
+    +id
+    +provider
+    +provider_reference
+    +amount
+    +currency
+    +status
+    +environment
+  }
+  class PaymentEvent {
+    +id
+    +event_checksum
+    +event_type
+  }
